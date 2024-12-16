@@ -11,9 +11,9 @@ import { Button } from "../Button";
 const Header = ({ children, className }: HeaderProps) => {
     const router = useRouter();
 
-    const handleLogout = () => {
+    // const handleLogout = () => {
 
-    }
+    // }
 
     return (
         <div
