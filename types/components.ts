@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import { Price, Product } from "./subscriptions";
 
 export interface BoxProps {
     children: React.ReactNode;
@@ -89,4 +90,16 @@ export interface PlayerContentProps {
 export interface SliderProps {
     value?: number;
     onChange?: (value: number) => void;
+};
+
+export interface ProductWithPrice extends Product {
+    prices?: Price[];
+};
+
+export interface ModalProviderProps {
+    products: ProductWithPrice[];
+};
+
+export interface SubscribeModalProps {
+    products: ProductWithPrice[];
 };

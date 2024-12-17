@@ -1,4 +1,5 @@
 import { PostDataProps } from "@/types/helpers";
+import { Price } from "@/types/subscriptions";
 
 export const getURL = () => {
     let url = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL ?? 'http://localhost:3000/';
@@ -32,4 +33,14 @@ export const toDateTime = (secs: number) => {
     const t = new Date('1970-01-01T00:30:00Z');
     t.setSeconds(secs);
     return t;
+};
+
+export const formatPrice = (price: Price) => {
+    const priceString = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: price.currency,
+        minimumFractionDigits: 0
+    }).format((price?.unit_amount || 0) / 100);
+
+    return priceString;
 };

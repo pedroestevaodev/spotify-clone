@@ -19,7 +19,6 @@ const Player = () => {
                 key={songUrl}
                 song={song}
                 songUrl={songUrl}
-                // player={player}
             />
         </div>
     );

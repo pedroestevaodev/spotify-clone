@@ -3,13 +3,16 @@ import { SupabaseProvider } from "./SupabaseProvider";
 import { UserProvider } from "./UserProvider";
 import { ModalProvider } from "./ModalProvider";
 import { ToasterProvider } from "./ToasterProvider.tsx";
+import { getActiveProductsWithPrices } from "@/actions/getActiveProductsWithPrices";
 
-const Providers = ({ children }: ChildrenProps) => {
+const Providers = async ({ children }: ChildrenProps) => {
+    const products = await getActiveProductsWithPrices();
+
     return (
         <SupabaseProvider>
             <UserProvider>
                 <ToasterProvider />
-                <ModalProvider />
+                <ModalProvider products={products} />
                 {children}
             </UserProvider>
         </SupabaseProvider>
