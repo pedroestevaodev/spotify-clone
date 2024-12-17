@@ -1,16 +1,20 @@
 'use client';
 
 import { useLoadImage } from "@/hooks/useLoadImage";
+import usePlayer from "@/hooks/usePlayer";
 import { MediaItemProps } from "@/types/components";
 import Image from "next/image";
 
 const MediaItem = ({ data, onClick }: MediaItemProps) => {
+    const player = usePlayer();
     const imageUrl = useLoadImage(data);
 
     const handleClick = () => {
         if (onClick) {
             return onClick(data.id);
         }
+
+        return player.setId(data.id);
     };
 
     return (
