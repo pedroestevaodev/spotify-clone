@@ -3,6 +3,7 @@
 import { ListItemProps } from "@/types/components";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FaPlay } from "react-icons/fa";
 
 const ListItem = ({
     image,
@@ -33,7 +34,7 @@ const ListItem = ({
                 {name}
             </p>
             <div className="absolute right-5 transition opacity-0 rounded-full flex items-center justify-center bg-green-500 p-4 drop-shadow-md group-hover:opacity-100 hover:scale-110">
-
+                <FaPlay className="text-black" />
             </div>
         </button>
     );
