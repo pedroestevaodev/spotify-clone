@@ -6,7 +6,7 @@
     </a>
 </p>
 
-A full-featured **Spotify Clone** built with the latest **Next.js App Router**, fully responsive and integrated with **Supabase**, **Stripe**, and **PostgreSQL**. This project reproduces key features of the real [**Spotify**](https://open.spotify.com/) app, including audio streaming, authentication, playlists, payments, and more — all with a modern UI powered by **Tailwind CSS**.
+A full-featured **Spotify Clone** built with the latest **Next.js App Router**, fully responsive and integrated with **Supabase**, **Stripe**, and **PostgreSQL**. This project reproduces key features of the real [**Spotify**](https://open.spotify.com/) app, including audio streaming, authentication, playlists, payments, and more. All with a modern UI powered by **Tailwind CSS**.
 
 ## About the Project
 
@@ -59,7 +59,7 @@ The project was built using the following technologies and tools:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/pedroestevaodev/spotify-imersao-alura.git
+git clone https://github.com/pedroestevaodev/spotify-clone.git
 cd spotify-clone
 ```
 
@@ -122,13 +122,6 @@ The easiest way to deploy your Next.js application is by using the [Vercel Platf
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 > Make sure to set the environment variables in Vercel > Settings > Environment Variables.
-
-## Learning Credits
-
-This project was built based on the **YouTube** tutorial:
-
-🎬 [**_Full Stack Spotify Clone: Next 13.4, React, Stripe, Supabase, PostgreSQL, Tailwind (2023)_**](https://youtu.be/2aeMRB8LL4o?si=Gxfr_Q2hYnlj4Kq0)  
-👨🏻‍💻 [_Code With Antonio_](https://www.youtube.com/@codewithantonio)
 
 ## License
 
