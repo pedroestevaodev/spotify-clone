@@ -14,8 +14,16 @@ import { useEffect } from "react";
 
 const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
     const player = usePlayer();
-    const [volume, setVolume] = useState<number>(1);
+
+    const [volume, setVolume] = useState<number>(() => {
+        if (typeof window !== "undefined") {
+            const savedVolume = localStorage.getItem('player-volume');
+            return savedVolume ? parseFloat(savedVolume) : 1;
+        }
+        return 1;
+    });
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
@@ -45,7 +53,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
         player.setId(nextSong);
     };
 
-    const [play, { pause, sound }] = useSound(songUrl, 
+    const [play, { pause, sound }] = useSound(songUrl,
         {
             volume,
             onplay: () => setIsPlaying(true),
@@ -57,6 +65,14 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
             format: ['mp3'],
         }
     );
+
+    useEffect(() => {
+        if (sound) sound.volume(volume);
+    }, [sound, volume]);
+
+    useEffect(() => {
+        localStorage.setItem('player-volume', String(volume));
+    }, [volume]);
 
     useEffect(() => {
         sound?.play();
@@ -92,7 +108,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
             </div>
 
             <div className="flex md:hidden items-center justify-end col-auto w-full">
-                <div 
+                <div
                     className="size-10 flex items-center justify-center rounded-full bg-white p-1 cursor-pointer"
                     onClick={handlePlay}
                 >
@@ -101,19 +117,19 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
             </div>
 
             <div className="hidden md:flex items-center justify-center gap-x-6 size-full max-w-[722px]">
-                <AiFillStepBackward 
-                    className="text-neutral-400 cursor-pointer hover:text-white transition" 
+                <AiFillStepBackward
+                    className="text-neutral-400 cursor-pointer hover:text-white transition"
                     size={30}
                     onClick={onPlayPrevious}
                 />
-                <div 
+                <div
                     className="flex items-center justify-center size-10 rounded-full bg-white p-1 cursor-pointer"
                     onClick={handlePlay}
                 >
                     <Icon className="text-black" size={30} />
                 </div>
                 <AiFillStepForward
-                    className="text-neutral-400 cursor-pointer hover:text-white transition" 
+                    className="text-neutral-400 cursor-pointer hover:text-white transition"
                     size={30}
                     onClick={onPlayNext}
                 />
@@ -121,7 +137,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
 
             <div className="hidden md:flex items-center justify-end pr-2">
                 <div className="flex items-center gap-x-2 w-[120px]">
-                    <VolumeIcon 
+                    <VolumeIcon
                         className="cursor-pointer"
                         size={34}
                         onClick={toggleMute}
